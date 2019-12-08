@@ -1,0 +1,32 @@
+plugins {
+    id 'maven'
+    id 'java'
+    id 'eclipse-wtp'
+    id 'idea'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    //id "com.gradle.build-scan" version "2.4.2"
+    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+}
+apply plugin: 'io.spring.dependency-management'
+
+group = 'org.pachnanda'
+version = "1.0.0.BUILD-SNAPSHOT"
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    google()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-devtools"
+    implementation "com.h2database:h2"
+    implementation "org.projectlombok:lombok"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "de.flapdoodle.embed:de.flapdoodle.embed.mongo"
+    testImplementation "org.springframework.security:spring-security-test"
+}
