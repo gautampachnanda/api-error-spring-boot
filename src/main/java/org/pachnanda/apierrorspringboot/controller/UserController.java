@@ -29,6 +29,11 @@ public class UserController {
         return userService.getUserCollection(userCollection);
     }
 
+    @GetMapping(value = "/all")
+    public List<User> list() throws EntityNotFoundException {
+        return userService.list();
+    }
+
     @GetMapping(value = "/params")
     public User getUserRequestParam(@RequestParam("userId") Long userId) throws EntityNotFoundException {
         return userService.getUser(userId);

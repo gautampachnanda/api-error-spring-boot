@@ -2,6 +2,7 @@ package org.pachnanda.apierrorspringboot;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.pachnanda.apierrorspringboot.entities.User;
 import org.pachnanda.apierrorspringboot.repository.UserRepository;
 import org.pachnanda.apierrorspringboot.service.UserBuilder;
 import org.springframework.boot.ApplicationArguments;
@@ -18,6 +19,8 @@ public class DataInitializer implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         log.info("Populating database with sample data...");
         userdRepository.save(UserBuilder.create());
+        Iterable<User> a = userdRepository.findAll();
+        log.info("Saved {}", a);
     }
 
 }

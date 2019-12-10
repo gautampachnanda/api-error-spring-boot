@@ -14,7 +14,7 @@ public class UserCollection {
         return usersIds;
     }
 
-    public void setBirdsIds(List<Long> users) {
+    public void setUsersIds(List<Long> users) {
         this.usersIds = users;
     }
 }

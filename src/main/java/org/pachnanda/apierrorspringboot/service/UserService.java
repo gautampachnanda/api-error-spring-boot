@@ -1,5 +1,6 @@
 package org.pachnanda.apierrorspringboot.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.pachnanda.apierrorspringboot.entities.User;
 import org.pachnanda.apierrorspringboot.model.EntityNotFoundException;
 import org.pachnanda.apierrorspringboot.repository.UserRepository;
@@ -9,7 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
+@Slf4j
 @Service
 public class UserService {
     @Autowired
@@ -31,7 +35,14 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public List<User> list(){
+        return StreamSupport
+                .stream(userRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
     public List<User> getUserCollection(UserCollection userCollection) {
+        log.info("Looking up users");
         List<User> users = new ArrayList<>();
 
         for (Long userId : userCollection.getUsersIds()) {
@@ -41,6 +52,7 @@ public class UserService {
             }
             users.add(user.get());
         }
+        log.info("Found {} users", users.size());
         return users;
     }
 }
